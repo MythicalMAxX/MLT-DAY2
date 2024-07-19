@@ -10,8 +10,8 @@ import pandas as pd
 dir(pd)
 
 # Read data into Python
-education = pd.read_csv(r"C:\Data\education.csv")
-Education = pd.read_csv("C:/Data/education.csv")
+education = pd.read_csv(r"education.csv")
+Education = pd.read_csv("education.csv")
 
 A = 10
 a = 10.1
