@@ -5,11 +5,9 @@ import seaborn as sns
 
 # Load Data
 education = pd.read_csv("education.csv")
-cars = pd.read_csv("C:/Data/Cars.csv")
 
 # Data Information
 education.info()
-cars.info()
 
 # Exploratory Data Analysis (EDA)
 # Measures of Central Tendency
@@ -65,19 +63,3 @@ plt.show()
 
 # Descriptive Statistics
 print(education.describe())
-
-# Bivariate Visualization
-# Scatter Plots
-plt.figure()
-plt.scatter(x=cars['HP'], y=cars['MPG'])
-plt.title("Scatter Plot of HP vs MPG")
-plt.xlabel("HP")
-plt.ylabel("MPG")
-plt.show()
-
-plt.figure()
-plt.scatter(x=cars['HP'], y=cars['SP'], color='green')
-plt.title("Scatter Plot of HP vs SP")
-plt.xlabel("HP")
-plt.ylabel("SP")
-plt.show()
