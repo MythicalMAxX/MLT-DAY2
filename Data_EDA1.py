@@ -1,97 +1,83 @@
-2 + 2 # Function F9
-# Works as calculator
-
-# Python Libraries (Packages)
-# pip install <package name> - To install library (package), execute the code in Command prompt
-# pip install pandas
-
 import pandas as pd
-
-dir(pd)
-
-# Read data into Python
-education = pd.read_csv(r"education.csv")
-Education = pd.read_csv("education.csv")
-
-A = 10
-a = 10.1
-
-education.info()
-
-# C:\Users\education.csv - this is windows default file path with a '\'
-# C:\\Users\\education.csv - change it to '\\' to make it work in Python
-
-# Exploratory Data Analysis
-# Measures of Central Tendency / First moment business decision
-education.workex.mean() # '.' is used to refer to the variables within object
-education.workex.median()
-education.workex.mode()
-
-# Measures of Dispersion / Second moment business decision
-education.workex.var() # variance
-education.workex.std() # standard deviation
-range = max(education.workex) - min(education.workex) # range
-range
-
-# Third moment business decision
-education.workex.skew()
-education.gmat.skew()
-
-# Fourth moment business decision
-education.workex.kurt()
-
-# Data Visualization
 import matplotlib.pyplot as plt
 import numpy as np
-
-education.shape
-
-# barplot
-plt.bar(height = education.gmat, x = np.arange(1, 774, 1)) # initializing the parameter
-
-# Histogram
-plt.hist(education.gmat) # histogram
-plt.hist(education.gmat, bins = [600, 680, 710, 740, 780], color = 'green', edgecolor="red") 
-plt.hist(education.workex)
-plt.hist(education.workex, color='red', edgecolor = "black", bins = 6)
-
-help(plt.hist)
-
-# Histogram using Seaborn
 import seaborn as sns
-sns.distplot(education.gmat) # Deprecated histogram function from seaborn
 
-sns.displot(education.gmat) # Histogram from seaborn
+# Load Data
+education = pd.read_csv("education.csv")
+cars = pd.read_csv("C:/Data/Cars.csv")
 
+# Data Information
+education.info()
+cars.info()
+
+# Exploratory Data Analysis (EDA)
+# Measures of Central Tendency
+print("Mean:", education.workex.mean())
+print("Median:", education.workex.median())
+print("Mode:", education.workex.mode())
+
+# Measures of Dispersion
+print("Variance:", education.workex.var())
+print("Standard Deviation:", education.workex.std())
+print("Range:", max(education.workex) - min(education.workex))
+
+# Skewness
+print("Skewness (workex):", education.workex.skew())
+print("Skewness (gmat):", education.gmat.skew())
+
+# Kurtosis
+print("Kurtosis (workex):", education.workex.kurt())
+
+# Data Visualization
+# Barplot
+plt.figure()
+plt.bar(height=education.gmat, x=np.arange(1, len(education.gmat) + 1))
+plt.title("Barplot of GMAT Scores")
+plt.show()
+
+# Histograms
+plt.figure()
+plt.hist(education.gmat, color='blue', edgecolor='red', bins=[600, 680, 710, 740, 780])
+plt.title("Histogram of GMAT Scores")
+plt.show()
+
+plt.figure()
+plt.hist(education.workex, color='red', edgecolor='black', bins=6)
+plt.title("Histogram of Work Experience")
+plt.show()
+
+# Histograms using Seaborn
+sns.displot(education.gmat)
+plt.title("Seaborn Histogram of GMAT Scores")
+plt.show()
 
 # Boxplot
 plt.figure()
-plt.boxplot(education.gmat) # boxplot
-
-help(plt.boxplot)
-
+plt.boxplot(education.gmat)
+plt.title("Boxplot of GMAT Scores")
+plt.show()
 
 # Density Plot
-sns.kdeplot(education.gmat) # Density plot
-sns.kdeplot(education.gmat , bw = 0.5 , fill = True)
-
+sns.kdeplot(education.gmat, bw_adjust=0.5, fill=True)
+plt.title("Density Plot of GMAT Scores")
+plt.show()
 
 # Descriptive Statistics
-# describe function will return descriptive statistics including the central tendency, dispersion and shape of a dataset's distribution
+print(education.describe())
 
-education.describe()
+# Bivariate Visualization
+# Scatter Plots
+plt.figure()
+plt.scatter(x=cars['HP'], y=cars['MPG'])
+plt.title("Scatter Plot of HP vs MPG")
+plt.xlabel("HP")
+plt.ylabel("MPG")
+plt.show()
 
-
-# Bivariate visualization
-# Scatter plot
-import pandas as pd
-import matplotlib.pyplot as plt
-
-cars = pd.read_csv("C:/Data/Cars.csv")
-
-cars.info()
-
-plt.scatter(x = cars['HP'], y = cars['MPG']) 
-
-plt.scatter(x = cars['HP'], y = cars['SP'], color = 'green') 
-
+plt.figure()
+plt.scatter(x=cars['HP'], y=cars['SP'], color='green')
+plt.title("Scatter Plot of HP vs SP")
+plt.xlabel("HP")
+plt.ylabel("SP")
+plt.show()
